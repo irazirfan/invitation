@@ -22,9 +22,9 @@
       --gold: #c5a059;
       --dark-gold: #9c783e;
       --cream: #fcfbf7;
-      --envelope-base: #e2d2be;
-      --envelope-front: #eddcc8;
-      --envelope-flap: #f4e7d7;
+      --envelope-base: #dfcfbc;
+      --envelope-front: #ebd8c2;
+      --envelope-flap: #f4e6d6;
       --charcoal: #2c2c2c;
     }
 
@@ -78,10 +78,10 @@
     }
 
     .envelope-wrapper.open {
-      margin-top: 290px;
+      margin-top: 310px;
     }
 
-    /* Flaps Structure */
+    /* Flaps */
     .flap-top {
       position: absolute;
       top: 0;
@@ -142,13 +142,13 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 6;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.95);
       border: 1px solid var(--gold);
       padding: 8px 18px;
       border-radius: 20px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.06);
       text-align: center;
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      transition: opacity 0.35s ease, transform 0.35s ease;
       white-space: nowrap;
     }
 
@@ -202,7 +202,7 @@
       pointer-events: none;
     }
 
-    /* Inside Invitation Card */
+    /* The Invitation Card (Completely hidden inside when closed) */
     .card {
       position: absolute;
       top: 10px;
@@ -215,16 +215,21 @@
       box-sizing: border-box;
       text-align: center;
       z-index: 2;
+      opacity: 0;
+      transform: translateY(20px) scale(0.9);
+      pointer-events: none;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform 0.8s cubic-bezier(0.35, 1.2, 0.35, 1), z-index 0.2s 0.35s;
+      transition: transform 0.7s cubic-bezier(0.35, 1.2, 0.35, 1), opacity 0.3s ease, z-index 0.2s;
     }
 
-    /* Card Pop-Up Animation */
+    /* Pop-out Effect on Open */
     .envelope-wrapper.open .card {
-      transform: translateY(-310px);
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-310px) scale(1);
       z-index: 10;
       box-shadow: 0 20px 45px rgba(0,0,0,0.18);
-      transition: transform 0.8s cubic-bezier(0.35, 1.2, 0.35, 1) 0.3s, z-index 0.1s 0.3s;
+      transition: transform 0.7s cubic-bezier(0.35, 1.2, 0.35, 1) 0.35s, opacity 0.4s ease 0.25s, z-index 0.1s 0.35s;
     }
 
     .card-border {
@@ -309,7 +314,7 @@
       font-weight: 600;
       border: 1px solid var(--gold);
       border-radius: 12px;
-      transition: background 0.2s;
+      transition: background 0.2s, color 0.2s;
     }
 
     .map-button:hover {
@@ -361,7 +366,7 @@
           <em>(Opposite of Rajarbag Police Lines Jame Masjid)</em>
         </div>
 
-        <a href="https://maps.google.com/?q=5,+Outer+Circular+Road,+Rajarbag,+Dhaka-1217" target="_blank" class="map-button" onclick="event.stopPropagation()">
+        <a href="http://googleusercontent.com/maps.google.com/2" target="_blank" class="map-button" onclick="event.stopPropagation()">
           📍 View Map
         </a>
       </div>
@@ -369,17 +374,3 @@
   </div>
 
   <script>
-    function toggleEnvelope() {
-      const envelope = document.getElementById('envelope');
-      const hint = document.getElementById('hint');
-      envelope.classList.toggle('open');
-      
-      if (envelope.classList.contains('open')) {
-        hint.innerText = "✉ Tap Envelope to Close";
-      } else {
-        hint.innerText = "✉ Tap Envelope to Open";
-      }
-    }
-  </script>
-</body>
-</html>
